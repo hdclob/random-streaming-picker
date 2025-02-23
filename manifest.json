@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Random Streaming Picker",
+  "version": "1.0",
+  "description": "Picks a random streaming service and a random episode from a series.",
+  "permissions": ["tabs", "storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://www.disneyplus.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["disney_episodes.json"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
