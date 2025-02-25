@@ -3,7 +3,7 @@ document.getElementById("randomPick").addEventListener("click", () => {
     "consecutiveEpisodes"
   );
 
-  let consecutiveEpisodes = consecutiveEpisodesInput.getAttribute("value");
+  let consecutiveEpisodes = consecutiveEpisodesInput.value;
   try {
     consecutiveEpisodes = parseInt(consecutiveEpisodes);
   } catch (error) {

@@ -30,6 +30,7 @@ class EpisodeManager {
       this.currentShow == null ||
       this.consecutiveCount >= this.maxConsecutive
     ) {
+      this.consecutiveCount = 0;
       let randomShow;
       do {
         randomShow =
@@ -38,7 +39,7 @@ class EpisodeManager {
           ];
       } while (this.currentShow == randomShow);
 
-      return randomShow;
+      this.currentShow = randomShow;
     }
 
     this.consecutiveCount++;
@@ -65,8 +66,10 @@ class EpisodeManager {
     });
   }
 
-  async playEpisode(sender, consecutiveEpisodes = 2) {
-    this.consecutiveEpisodes = consecutiveEpisodes;
+  async playEpisode(sender, consecutiveEpisodes = null) {
+    if (consecutiveEpisodes != null) {
+      this.maxConsecutive = consecutiveEpisodes;
+    }
     this.currentShow = this.getNextShow();
 
     const nextEpisode = await this.getNextEpisode(this.currentShow);
